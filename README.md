@@ -14,6 +14,7 @@ A Cookbook website running in Python-Django.
     - List page (By category).
     - Detail page
     - Account page
+    - Category addition page (?)
 
 3. Models:
     - Category
@@ -32,3 +33,4 @@ A Cookbook website running in Python-Django.
 # Clarifications
 
 1. Should the name of the reviewer be displayed?
+2. Do we have to make a `User` model? if yes, how to integrate that with Django's built-in login system without redundancy?

@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     # Home page.
-    pass
+    context = {}
+    return render(request, 'index.html', context)
 
 @login_required
 def category_create(request):

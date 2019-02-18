@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime as dt
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -19,6 +20,7 @@ class Recipe(models.Model):
         return '{}'.format(self.name)
 
 class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='rec')
     date_reviewed = models.DateTimeFied(default=dt.now())
 
