@@ -18,7 +18,7 @@ class Recipe(models.Model):
     def __str__(self):
         return '{}'.format(self.name)
 
-class Review(model.Model):
+class Review(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='rec')
     date_reviewed = models.DateTimeFied(default=dt.now())
 

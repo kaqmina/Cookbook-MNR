@@ -28,4 +28,7 @@ A Cookbook website running in Python-Django.
         - rating
         - datetime
         - comment
-    
+
+# Clarifications
+
+1. Should the name of the reviewer be displayed?
