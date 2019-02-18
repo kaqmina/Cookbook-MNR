@@ -17,12 +17,15 @@ A Cookbook website running in Python-Django.
 
 3. Models:
     - Category
-        -
+        - name
     - Recipe
-        - title
-        - content
+        - name
         - description
+        - steps (?)
         - category
-    - User
     - Review
+        - recipe (FK)
+        - rating
+        - datetime
+        - comment
     
