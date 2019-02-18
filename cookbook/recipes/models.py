@@ -21,8 +21,10 @@ class Recipe(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(null=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='rec')
-    date_reviewed = models.DateTimeFied(default=dt.now())
+    date_reviewed = models.DateTimeField(default=dt.now())
+    comment = models.TextField(max_length=500)
 
     def __str__(self):
         return '{}'.format(self.recipe)

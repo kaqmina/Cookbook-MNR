@@ -7,6 +7,7 @@ A Cookbook website running in Python-Django.
     - Add, edit, delete (status/archive), view recipe.
     - Able to review recipes. (Rate and review?)
     - Account pages. (Register and Login)
+    - Average rating per recipe.
 
 2. Templates:
     - Home page
@@ -25,6 +26,7 @@ A Cookbook website running in Python-Django.
         - steps (?)
         - category
     - Review
+        - User (FK)
         - recipe (FK)
         - rating
         - datetime
