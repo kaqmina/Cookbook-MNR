@@ -32,7 +32,16 @@ A Cookbook website running in Python-Django.
         - datetime
         - comment
 
+4. Users:
+    - Admin user (Django default)
+    - Plain user (Only be able to review)
+
 # Clarifications
 
 1. Should the name of the reviewer be displayed?
 2. Do we have to make a `User` model? if yes, how to integrate that with Django's built-in login system without redundancy?
+
+# Notes
+
+1. Add users to group programmatically: http://www.re-cycledair.com/programmatically-adding-users-to-groups-in-django
+2. Understanding about user permissions and groups: https://micropyramid.com/blog/understanding-django-permissions-and-groups/

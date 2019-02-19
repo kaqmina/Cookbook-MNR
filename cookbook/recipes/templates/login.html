@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Login Page
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col m3">
+            <form action="{% url 'recipes:login' %}" method="POST">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username" />
+                <label for="password" name="password">Password:</label>
+                <input type="text" name="password" />
+                <input type="submit" value="Login" class="btn" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

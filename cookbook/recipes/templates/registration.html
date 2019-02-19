@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col m3">
+            <form action="{% url 'recipes:register' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn" type="submit" value="Register" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

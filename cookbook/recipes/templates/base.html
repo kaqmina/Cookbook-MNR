@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            {% block head %}
+                base html
+            {% endblock %}
+        </title>
+        <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/bootstrap-4.1.0-dist/css/bootstrap.min.css' %}">
+        {% block styles %}
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            Body here.
+        {% endblock %}
+        <script src="{% static 'recipes/bootstrap-4.1.0-dist/js/bootstrap.min.js'%}"></script>
+        {% block scripts %}
+
+        {% endblock %}
+    </body>
+</html>
