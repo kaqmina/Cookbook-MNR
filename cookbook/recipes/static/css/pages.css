@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    
+}
+
+.index-bg {
+    background: url(../img/food.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.white-bg {
+    background-color: rgba(255, 255, 255, 1);
+    height: 100%;
+}
+
+.black-bg {
+    background-color: rgba(0, 0, 0, 1);
+    height: 100%;
+}
+
+.white-bg-a {
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 100%;
+}
+
+.black-bg-a {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+}
+
+.ricetta-header {
+    font-size: 60px;
+    text-transform: none;
+	background: linear-gradient( #00e70f 0%, #00ccff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.index-padding {
+    margin-top: 5%;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+}

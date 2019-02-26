@@ -26,6 +26,12 @@ def recipe_create(request):
     pass
 
 @login_required
+def recipe_list(request):
+    # use paginator here.
+    # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    pass
+
+@login_required
 def recipe_detail(request, recipe_id):
     # Recipe details
     pass
@@ -59,9 +65,6 @@ def user_create(request):
             user = form.save()
             user.set_password(request.POST['password'])
             user.save()
-            # Add user to NormalUser group. | For permission testing.
-            g = Group.objects.get(name='NormalUser')
-            g.user_set.add(user)
             login(request, user)
             return redirect('recipes:home')
         else:
@@ -76,7 +79,7 @@ def user_detail(request, user_id):
 
 @login_required
 def user_update(request, user_id):
-    # Update details.
+    context = {}
     pass
 
 def user_login(request):

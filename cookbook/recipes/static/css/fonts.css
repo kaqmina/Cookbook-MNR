@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Brilliantte Presonal';
+    src: url(../fonts/BrillianttePresonalUseOnly.eot);
+    src: url(../fonts/BrillianttePresonalUseOnly.eot?#iefix) format('embedded-opentype'),
+        url(../fonts/BrillianttePresonalUseOnly.woff2) format('woff2'),
+        url(../fonts/BrillianttePresonalUseOnly.woff) format('woff'),
+        url(../fonts/BrillianttePresonalUseOnly.ttf) format('truetype'),
+        url(../fonts/BrillianttePresonalUseOnly.svg#BrillianttePresonalUseOnly) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-brilliantte {
+    font-family: 'Brilliantte Presonal', Fallback, sans-serif;
+}
