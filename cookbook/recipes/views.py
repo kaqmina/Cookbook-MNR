@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Category, Recipe, Review
-from .forms import RegistrationModelForm
+from .models import Category, Recipe, Review, Ingredient, Step, Profile
+from .forms import RegistrationForm, RecipeForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -16,14 +17,28 @@ def index(request):
 
 @login_required
 def home(request):
-    # Home page.
+    # Home page. | Show Featured, Popular, Highest Rated, Browse (Category)
     context = {}
     return render(request, 'home.html', context)
 
 @login_required
 def recipe_create(request):
     # Add new recipe.
-    pass
+    context = {}
+    context['form'] = RecipeForm()
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.picture = request.FILES['picture']
+            x.added_by = User.objects.get(username=request.user)
+            x.save()
+            return redirect('recipes:home') # Change it back to selected detail page.
+        else:
+            context['form'] = form
+            return render(request, 'test.html', context)
+    else:
+        return render(request, 'test.html', context)
 
 @login_required
 def recipe_list(request):
@@ -39,7 +54,20 @@ def recipe_detail(request, recipe_id):
 @login_required
 def recipe_update(request, recipe_id):
     # Update details.
-    pass
+    context = {}
+    recipe = Recipe.object.get(id=recipe_id)
+    context['recipe'] = recipe
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('Successfully updated.')
+        else:
+            context['form'] = form
+            return render(request, 'test.html', context)
+    else:
+        context['form'] = RecipeForm(instance=recipe)
+        return render(request, 'test.html', context)
 
 @login_required
 def recipe_delete(request, recipe_id):
@@ -53,14 +81,14 @@ def review(request, recipe_id):
 
 def user_create(request):
     # Register user.
-    form = RegistrationModelForm()
+    form = RegistrationForm()
     context = {}
     if request.user.is_authenticated:
         return redirect('recipes:home')
     
     context['form'] = form
     if request.method == 'POST':
-        form = RegistrationModelForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             user.set_password(request.POST['password'])

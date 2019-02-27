@@ -44,7 +44,7 @@ Content reference/source: https://www.allrecipes.com
         - recipe (FK)
         - date_added (will determine the order of steps)
         - description
-    - Ingredients
+    - Ingredient
         - recipe (FK)
         - date_added
         - ingredient (quantity is already included here.)
