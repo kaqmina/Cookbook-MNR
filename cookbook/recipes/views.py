@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Category, Recipe, Review, Ingredient, Step, Profile
-from .forms import RegistrationForm, RecipeForm, ReviewForm
+from .forms import RegistrationForm, RecipeForm, ReviewForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -90,7 +90,7 @@ def user_create(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
             user.set_password(request.POST['password'])
             user.save()
             login(request, user)
@@ -99,6 +99,25 @@ def user_create(request):
             context['form'] = form
             return redirect('recipes:index')
     return render(request, 'registration.html', context)
+
+@login_required
+def user_profile(request):
+    context = {}
+    context['form'] = ProfileForm()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.avatar = request.FILES['avatar']
+            user.save()
+            # Change redirected site.
+            return redirect('recipes:home')
+        else:
+            context['form'] = form
+            # Change
+            return render(request, 'home.html', context)
+    else:
+        return render(request, 'home.html', context)
 
 @login_required
 def user_detail(request, user_id):

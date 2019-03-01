@@ -32,7 +32,8 @@ html, body {
 }
 
 .ricetta-header {
-    font-size: 60px;
+    font-size: 90px !important;
+    text-align: center;
     text-transform: none;
 	background: linear-gradient( #00e70f 0%, #00ccff 100%);
 	-webkit-background-clip: text;

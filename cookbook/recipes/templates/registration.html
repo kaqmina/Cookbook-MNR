@@ -7,9 +7,12 @@
 {% block body %}
     <div class="row">
         <div class="col m3">
-            <form action="{% url 'recipes:register' %}" method="POST">
+            <form action="{% url 'recipes:register' %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
-                {{ form }}
+                {% for field in user_form %} 
+                    {{ field.label }} <br />
+                    {{ field }} <br />
+                {% endfor %}
                 <input class="btn" type="submit" value="Register" />
             </form>
         </div>
