@@ -1,18 +1,55 @@
 {% extends 'base.html' %}
+
 {% block title %}
-    Login Page
+    Ricetta | Sign In
 {% endblock %}
+
 {% block body %}
-    <div class="row">
-        <div class="col m3">
-            <form action="{% url 'recipes:login' %}" method="POST">
-                {% csrf_token %}
-                <label for="username">Username:</label>
-                <input type="text" name="username" />
-                <label for="password" name="password">Password:</label>
-                <input type="text" name="password" />
-                <input type="submit" value="Login" class="btn" />
-            </form>
+
+    <div class="register-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left Coloumn -->
+                <div class="col">
+
+                    
+
+                </div>
+                <!-- Right Column -->
+                <div class="col white-bg">
+                    <div class="container" style="display: flex; flex-flow: column;">
+                        <div class="row index-padding">
+                            <div class="col">
+                                <p class="font-stackyard ricetta-header">Ricetta</p>
+                            </div>
+                        </div>
+                        <div class="row index-padding" style="flex-grow: 1;">
+                            <div class="col">
+                                <form action="{% url 'recipes:login' %}" method="POST">
+                                    {% csrf_token %}
+                                    <!-- Sign in or create account -->
+                                    <label>Sign In</label> 
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                    </div>
+                                    <!-- Remember me and forgot password. -->
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="rememberme">
+                                        <label class="custom-control-label" for="rememberme">Remember me</label>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}

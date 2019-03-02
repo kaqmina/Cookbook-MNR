@@ -11,7 +11,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto BLI';
     src: url(../fonts/Roboto-BlackItalic.eot);
     src: url(../fonts/Roboto-BlackItalic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-BlackItalic.woff2) format('woff2'),
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto I';
     src: url(../fonts/Roboto-Italic.eot);
     src: url(../fonts/Roboto-Italic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Italic.woff2) format('woff2'),
@@ -35,7 +35,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto BL';
     src: url(../fonts/Roboto-Black.eot);
     src: url(../fonts/Roboto-Black.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Black.woff2) format('woff2'),
@@ -47,7 +47,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto LI';
     src: url(../fonts/Roboto-LightItalic.eot);
     src: url(../fonts/Roboto-LightItalic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-LightItalic.woff2) format('woff2'),
@@ -59,7 +59,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto MI';
     src: url(../fonts/Roboto-MediumItalic.eot);
     src: url(../fonts/Roboto-MediumItalic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-MediumItalic.woff2) format('woff2'),
@@ -95,7 +95,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto L';
     src: url(../fonts/Roboto-Light.eot);
     src: url(../fonts/Roboto-Light.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Light.woff2) format('woff2'),
@@ -107,7 +107,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto T';
     src: url(../fonts/Roboto-Thin.eot);
     src: url(../fonts/Roboto-Thin.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Thin.woff2) format('woff2'),
@@ -119,7 +119,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto TI';
     src: url(../fonts/Roboto-ThinItalic.eot);
     src: url(../fonts/Roboto-ThinItalic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-ThinItalic.woff2) format('woff2'),
@@ -143,7 +143,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto BD';
     src: url(../fonts/Roboto-Bold.eot);
     src: url(../fonts/Roboto-Bold.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Bold.woff2) format('woff2'),
@@ -155,7 +155,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto M';
     src: url(../fonts/Roboto-Medium.eot);
     src: url(../fonts/Roboto-Medium.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-Medium.woff2) format('woff2'),
@@ -167,7 +167,7 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto BDI';
     src: url(../fonts/Roboto-BoldItalic.eot);
     src: url(../fonts/Roboto-BoldItalic.eot?#iefix) format('embedded-opentype'),
         url(../fonts/Roboto-BoldItalic.woff2) format('woff2'),
@@ -180,4 +180,60 @@
 
 .font-stackyard {
     font-family: 'Stackyard', Fallback, sans-serif;
+}
+
+.font-brill {
+    font-family: 'Brilliantte Presonal', Fallback, sans-serif;
+}
+
+.font-slabo {
+    font-family: 'Slabo 27px', Fallback, sans-serif;
+}
+
+.font-roboto {
+    font-family: 'Roboto', Fallback, sans-serif;
+}
+
+.font-roboto-black-italic {
+    font-family: 'Roboto BLI', Fallback, sans-serif;
+}
+
+.font-roboto-italic {
+    font-family: 'Roboto I', Fallback, sans-serif;
+}
+
+.font-roboto-black {
+    font-family: 'Roboto BL', Fallback, sans-serif;
+}
+
+.font-roboto-light-italic {
+    font-family: 'Roboto LI', Fallback, sans-serif;
+}
+
+.font-roboto-medium-italic {
+    font-family: 'Roboto MI', Fallback, sans-serif;
+}
+
+.font-roboto-light {
+    font-family: 'Roboto L', Fallback, sans-serif;
+}
+
+.font-roboto-thin {
+    font-family: 'Roboto T', Fallback, sans-serif;
+}
+
+.font-roboto-thin-italic {
+    font-family: 'Roboto TI', Fallback, sans-serif;
+}
+
+.font-roboto-bold {
+    font-family: 'Roboto BD', Fallback, sans-serif;
+}
+
+.font-roboto-medium {
+    font-family: 'Roboto M', Fallback, sans-serif;
+}
+
+.font-roboto-bold-italic {
+    font-family: 'Roboto BDI', Fallback, sans-serif;
 }

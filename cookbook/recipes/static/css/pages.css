@@ -1,10 +1,17 @@
 html, body {
     height: 100%;
-    
 }
 
 .index-bg {
     background: url(../img/food.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.register-bg {
+    background: url(../img/salad.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -40,8 +47,99 @@ html, body {
 	-webkit-text-fill-color: transparent;
 }
 
+.ricetta-header-sm {
+    font-size: 40px !important;
+    text-align: center;
+    text-transform: none;
+	background: linear-gradient( #00e70f 0%, #00ccff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .index-padding {
     margin-top: 5%;
     margin-left: 10% !important;
     margin-right: 10% !important;
+}
+
+.flip-horizontally {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+/* For Ricetta Navbar */
+.ricetta-nav {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    background-color: rgba(255, 255, 252, 1) !important;
+}
+
+.align-center-items {
+    align-items: center;
+}
+
+/* For Search Bar */
+.search-des {
+    padding-top: 5px;
+    border: none !important;
+    border-radius: 20px !important;
+    background-color: rgb(249, 249, 249) !important;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+/* Bootstrap Carousel */
+.clean-carousel {
+    height: 750px;
+    max-height: 750px;
+}
+
+.clean-carousel img {
+    background-size: cover;
+}
+
+.card {
+    border: none !important;
+}
+
+.card-carousel {
+    /* height: 70px !important; */
+    background-color: #282D33;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-bottom: 10px;
+}
+
+/* For headers */
+
+.header-normal {
+    padding-top: 25px;
+    padding-bottom:20px;
+    padding-left:25px;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+#recipesHome {
+    padding-left: 100px;
+    padding-right: 100px;
 }

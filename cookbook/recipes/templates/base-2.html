@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            {% block title %}
+                base html
+            {% endblock %}
+        </title>
+        <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/pages.js' %}"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/pages.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/bootstrap-4.1.0-dist/css/bootstrap.min.css' %}">
+        {% block styles %}
+
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="ricetta-nav navbar navbar-expand-md navbar-light shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand font-stackyard ricetta-header-sm" href="#">Ricetta</a>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav ml-auto align-center-items">
+                        <li class="nav-item">
+                            <div class="form-group has-search" style="margin-bottom: 0px !important;">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" class="form-control search-des">
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-link active" href="#">
+                            Home
+                            </a>
+                        </li>
+                        <!-- Must be dropdown -->
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-link" href="#">
+                            Categories
+                            </a>
+                        </li>
+                        <!-- Must be dropdown -->
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-link" href="#">
+                            {{ request.user.username }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block body %}
+            Body here.
+        {% endblock %}
+        <script src="{% static 'recipes/bootstrap-4.1.0-dist/js/bootstrap.min.js'%}"></script>
+        {% block scripts %}
+
+        {% endblock %}
+    </body>
+    <!-- Add footer here -->
+    
+</html>

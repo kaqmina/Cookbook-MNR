@@ -1,20 +1,65 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Registration
+    Ricetta | Sign Up
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col m3">
-            <form action="{% url 'recipes:register' %}" enctype="multipart/form-data" method="POST">
-                {% csrf_token %}
-                {% for field in user_form %} 
-                    {{ field.label }} <br />
-                    {{ field }} <br />
-                {% endfor %}
-                <input class="btn" type="submit" value="Register" />
-            </form>
+
+    <div class="register-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left Coloumn -->
+                <div class="col">
+
+                    
+
+                </div>
+                <!-- Right Column -->
+                <div class="col white-bg">
+                    <div class="container" style="display: flex; flex-flow: column;">
+                        <div class="row index-padding">
+                            <div class="col">
+                                <p class="font-stackyard ricetta-header">Ricetta</p>
+                            </div>
+                        </div>
+                        <div class="row index-padding" style="flex-grow: 1;">
+                            <div class="col">
+                                <form action="{% url 'recipes:register' %}" enctype="multipart/form-data" method="POST">
+                                    {% csrf_token %}
+                                    <label>Sign Up</label>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="first_name">First Name</label>
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name">Last Name</label>
+                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name">
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="termsandconditions">
+                                        <label class="custom-control-label" for="termsandconditions">I agree to the Terms and Conditions.</label>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}
