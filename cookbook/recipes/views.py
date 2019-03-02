@@ -19,6 +19,7 @@ def index(request):
 def home(request):
     # Home page. | Show Featured, Popular, Highest Rated, Browse (Category)
     context = {}
+    context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
     return render(request, 'home.html', context)
 
 @login_required
@@ -49,7 +50,8 @@ def recipe_list(request):
 @login_required
 def recipe_detail(request, recipe_id):
     # Recipe details
-    pass
+    context = {}
+    return render(request, 'detail.html', context)
 
 @login_required
 def recipe_update(request, recipe_id):
