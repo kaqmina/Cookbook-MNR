@@ -28,21 +28,21 @@
                                 <form action="{% url 'recipes:login' %}" method="POST">
                                     {% csrf_token %}
                                     <!-- Sign in or create account -->
-                                    <label>Sign In</label> 
+                                    <label class="header4-font">Sign In</label> 
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                        
+                                        <input type="text" class="ricetta-textbox-signup-login" name="username" id="username" placeholder="Username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                        
+                                        <input type="password" class="ricetta-textbox-signup-login" name="password" id="password" placeholder="Password">
                                     </div>
                                     <!-- Remember me and forgot password. -->
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="rememberme">
                                         <label class="custom-control-label" for="rememberme">Remember me</label>
                                       </div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Sign in</button>
                                 </form>
                             </div>
                         </div>
