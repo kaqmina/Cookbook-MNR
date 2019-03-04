@@ -27,32 +27,32 @@
                             <div class="col">
                                 <form action="{% url 'recipes:register' %}" enctype="multipart/form-data" method="POST">
                                     {% csrf_token %}
-                                    <label>Sign Up</label>
+                                    <label class="header4-font">Sign Up</label>
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                                        
+                                        <input type="text" class="ricetta-textbox-signup-login" name="username" id="username" placeholder="Username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                        
+                                        <input type="password" class="ricetta-textbox-signup-login" name="password" id="password" placeholder="Password">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">E-mail</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail Address">
+                                        
+                                        <input type="email" class="ricetta-textbox-signup-login" name="email" id="email" placeholder="E-mail Address">
                                     </div>
                                     <div class="form-group">
-                                        <label for="first_name">First Name</label>
-                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name">
+                                        
+                                        <input type="text" class="ricetta-textbox-signup-login" name="first_name" id="first_name" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="last_name">Last Name</label>
-                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name">
+                                        
+                                        <input type="text" class="ricetta-textbox-signup-login" name="last_name" id="last_name" placeholder="Last Name">
                                     </div>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="termsandconditions">
                                         <label class="custom-control-label" for="termsandconditions">I agree to the Terms and Conditions.</label>
                                       </div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Sign up</button>
                                 </form>
                             </div>
                         </div>
