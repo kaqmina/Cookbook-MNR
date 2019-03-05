@@ -29,4 +29,4 @@ class RecipeForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        exclude = ['user', 'date_reviewed']
+        exclude = ['user', 'date_reviewed', 'recipe']

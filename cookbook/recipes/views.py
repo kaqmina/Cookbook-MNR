@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -17,7 +18,7 @@ def index(request):
 
 @login_required
 def home(request):
-    # Home page. | Show Featured, Popular, Highest Rated, Browse (Category)
+    # Home page. | Show trending, most popular, latest.
     context = {}
     context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
     return render(request, 'home.html', context)
@@ -51,6 +52,13 @@ def recipe_list(request):
 def recipe_detail(request, recipe_id):
     # Recipe details
     context = {}
+    context['recipe'] = Recipe.objects.get(id=recipe_id)
+    context['reviews'] = Review.objects.all().filter(~Q(user=request.user), recipe=recipe_id) # Show reviews except the current user's.
+    try:
+        context['my_review'] = Review.objects.get(user=request.user, recipe=recipe_id) # Show the review of the current user.
+    except:
+        context['my_review'] = False
+    context['review'] = ReviewForm()    
     return render(request, 'detail.html', context)
 
 @login_required
@@ -79,7 +87,21 @@ def recipe_delete(request, recipe_id):
 @login_required
 def review(request, recipe_id):
     # With rating and comment.
-    pass
+    context = {}
+    context['recipe_id'] = recipe_id
+    recipe = Recipe.objects.get(id=recipe_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.recipe_id = recipe_id
+            x.user = User.objects.get(username=request.user)
+            x.save()
+            return redirect('recipes:detail', recipe_id)
+        else:
+            return redirect('recipes:detail', recipe_id)
+    else:
+        return redirect('recipes:detail', recipe_id)
 
 def user_create(request):
     # Register user.
