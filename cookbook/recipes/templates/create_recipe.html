@@ -5,6 +5,35 @@
 {% endblock %}
 
 {% block body %}
+    <!-- Form -->
+        <!-- Recipe:
+            - name
+            - description
+            - category
+            - servings
+            - prep time
+            - cook time
+            - ready time
+            - picture
+
+        Ingredient:
+            - ingredient
+        
+        Step:
+            - description -->
+    <!--  -->
+
+    <div class="nav-padding">
+        <div class="container-fluid">
+            <form action="" enctype="multipart/form-data" method="POST">
+                <div class="row" style="height: 100%">
+                    <div class="col-sm-5">
+    
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <form action="{% url 'recipes:create_recipe' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {% for field in form %}
