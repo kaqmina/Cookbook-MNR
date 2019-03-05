@@ -65,7 +65,7 @@
                     <p> No steps has been added.</p>
                 {% else %}
                     {% for step in recipe.steps.all %}
-                        <p> {{ step.description }} </p>
+                        <p> {{ step.description }} dsfsdfasdfs</p>
                     {% endfor %}
                 {% endif %}
             </div>
@@ -79,7 +79,10 @@
             </div>
             {% if my_review %}
                 <!-- Star rating -->
-
+                Rating: {{ my_review.rating }} <br />
+                Description: {{ my_review.comment }}
+                Date Reviewed: {{ my_review.date_reviewed }}
+                <!-- Edit button here, change output -->
             {% else %}
                 <!-- Star rating -->
                 <form action="{% url 'recipes:review' recipe.id %}" method="POST">
@@ -93,6 +96,18 @@
             {% endif %}
             <div>
                 
+                {% if reviews|length == 0 %}
+                    <p> Be the first to review! </p>
+                {% else %}
+                    {% for review in reviews.all %}
+                        <p>
+                            Rating: {{ review.rating }}
+                            Description: {{ review.comment }}
+                            By: {{ review.user }}
+                            Date reviewed: {{ review.date_reviewed }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
 
             </div>
         </div>
