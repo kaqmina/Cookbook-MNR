@@ -242,3 +242,95 @@ input[type="checkbox"]:checked + label::after {
    margin-bottom:10px
 }
 
+.ricetta-detail-title{
+    color: #707070;
+    font-size: 40px;
+
+}
+
+.ricetta-detail-header {
+    margin:30px;
+}
+
+.ricetta-font-color {
+    color: #707070;
+}
+
+.ricetta-item-margin {
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.ricetta-card {
+    margin-top:50px;
+    border-radius: 20px;
+    background-color: #CDFFF2
+}
+
+.vertical-rule-right{
+    border-right: solid 1px #99F5DC;
+    margin-right: 20px;
+}
+
+.portion-icon{
+    width:25px;
+    height:25px;
+    margin-right:10px;
+}
+
+.serve-size-font {
+    font-size: 14px;
+}
+
+.ricetta-hr {
+    width:75%;
+}
+.ricetta-detail-hr {
+    height: 1px;
+    color: #99F5DC;
+    background-color: #99F5DC;
+    border: none;
+}
+
+.ricetta-image-fit {
+    object-fit: cover;
+    height:100%;
+    width:100%;
+}
+
+.ricetta-detail-container {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.header2-detail{
+    font-size:40px;
+    color: #48DDB5;
+    margin-top:50px;
+    margin-bottom:25px;
+}
+
+.ricetta-detail-font {
+    font-size: 20px;
+    color: #707070;
+    margin-top:50px;
+    margin-bottom:50px;
+    margin-left:30px;
+}
+
+.ricetta-detail-steps {
+    font-size:20px;
+    color: #48DDB5;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+ol { 
+    counter-reset: item;
+    list-style-type: none;
+}
+li { display: inline; }
+li:before { 
+    content: counter(item) "  "; 
+    counter-increment: item 
+}

@@ -20,53 +20,104 @@
 
     <div class="nav-padding">
 
-        <div class="container-fluid clean-carousel">
+        <div class="container-fluid clean-carousel" style="height: 90%;">
             <div class="row" style="height: 100%;">
-                <div class="col-sm-5" style="background-color: aliceblue;">
-                    <h2> {{ recipe.name }} </h2>
-                    <h5> By {{ recipe.added_by }} </h5>
-                    <p> {{ recipe.description }} </p>
+                <div class="col-sm-4">
+                    <div class="ricetta-detail-header">
+                        <h2 class="ricetta-detail-title font-roboto-bold"> {{ recipe.name }} </h2>
+                        <h5 class="font-slabo ricetta-font-color ricetta-item-margin"> By {{ recipe.added_by }} </h5>
+                        <p class="font-slabo ricetta-font-color ricetta-item-margin"> "{{ recipe.description }}" </p>
 
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="ricetta-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-5 vertical-rule-right">
+                                        <p class="font-roboto-medium ricetta-font-color">Prep:</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Cook:</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Total:</p>
+                                    </div>
+                                    <div class="col-sm-6 ricetta-font-color">
+                                        <div>
+                                            <p>Reviews</p>
+                                            <p>Stars</p>
+                                        </div>
+                                        <hr class="ricetta-hr ricetta-detail-hr">
+                                        <div class="row">
+                                            <img class="portion-icon" src="../static/icon/Portion Icon.png" alt="Serving Size: ">
+                                            <p class="font-roboto-thin ricetta-font-color serve-size-font">Serving Size</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-7">
-                    <img src="{{ recipe.picture.url }}" alt="Recipe picture">
+                <div class="col-sm-8">
+                    <img class="ricetta-image-fit" src="{{ recipe.picture.url }}" alt="Recipe picture">
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="header-normal">
-                <h2 class="header2-font">INGREDIENTS</h2>
+        <div class="ricetta-detail-container" style="margin-top:50px">
+            <div>
+                <h2 class="header2-detail font-roboto-bold">INGREDIENTS</h2>
             </div>
+            <hr class = "ricetta-hr">
             <div>
                 {% if recipe.ingredients.all|length == 0 %}
-                    <p> No ingredients has been added.</p>
+                    <p class="ricetta-detail-font ricetta-font-color font-slabo"> No ingredients has been added.</p>
                 {% else %}
                     {% for ingredient in recipe.ingredients.all %}
-                        <p> {{ ingredient }} </p>
+                        <p class="ricetta-detail-font ricetta-font-color font-slabo"> {{ ingredient }} </p>
                     {% endfor %}
                 {% endif %}
             </div>
 
         </div>
 
-        <div class="container-fluid">
-            <div class="header-normal">
-                <h2 class="header2-font">DIRECTIONS</h2>
+        <div class="ricetta-detail-container">
+            <div>
+                <h2 class="header2-detail">DIRECTIONS</h2>
             </div>
+            <hr class = "ricetta-hr">
             <div>
                 {% if recipe.steps.all|length == 0 %}
-                    <p> No steps has been added.</p>
+                    <p class="ricetta-detail-font ricetta-font-color font-slabo"> No steps has been added.</p>
                 {% else %}
-                    {% for step in recipe.steps.all %}
-                        <p> {{ step.description }} </p>
-                    {% endfor %}
+                <div class="row">
+                    <ol>
+                        {% for step in recipe.steps.all %}
+                            <div class="col-sm-2">
+                            <li></li>
+                            </div>
+                            <div class="col-sm-10">
+                            <p>{{ step.description }}</p>
+                            </div>
+                        {% endfor %}
+                    </ol>
+                </div>
+                    
+                    <{% comment %}
+                        
+
+                    <div class="row">
+                        <ol>
+                        {% for step in recipe.steps.all %}
+                            <li>
+                            <div class="col-sm-10">
+                                
+                                    <p class="ricetta-detail-font ricetta-font-color font-slabo"> {{ step.description }} </p>
+                                    </div>
+                            </li>
+                            {% endfor %}
+                                                 {% endcomment %}       
+                    
+                                
+                            
+                        
+                        </ol>
+                    </div>
                 {% endif %}
             </div>
 
@@ -88,7 +139,7 @@
                         {{ field.label }} {{ field }}
                     {% endfor %}
                     <br />
-                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Submit</button>           
+                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Comment</button>           
                 </form>
             {% endif %}
             <div>
