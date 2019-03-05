@@ -6,18 +6,6 @@
 
 {% block body %}
 
-    <!-- {% for review in reviews %}
-        By: {{ review.user }} <br />
-        Rating: {{ review.rating }} <br />
-        Comment: {{ review.comment }} <br />
-        Date reviewed: {{ review.date_reviewed }} <br />
-    {% endfor %}
-
-    {{ my_review.user }} <br />
-    {{ my_review.rating }} <br />
-    {{ my_review.comment }} <br />
-    {{ my_review.date_reviewed }} <br /> -->
-
     <div class="nav-padding">
 
         <div class="container-fluid clean-carousel">
@@ -27,6 +15,7 @@
                     <h5> By {{ recipe.added_by }} </h5>
                     <p> {{ recipe.description }} </p>
 
+                    <!-- Edit -->
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
@@ -97,7 +86,7 @@
             <div>
                 
                 {% if reviews|length == 0 %}
-                    <p> Be the first to review! </p>
+                    <p> No other reviews. </p>
                 {% else %}
                     {% for review in reviews.all %}
                         <p>

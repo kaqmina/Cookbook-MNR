@@ -1,0 +1,37 @@
+{% extends 'base-2.html' %}
+{% load static %}
+
+{% block title %}
+    Ricetta | My Account
+{% endblock %}
+
+{% block body %}
+
+    <!-- Show User Profile -->
+    <!-- Show recipes created -->
+    <!-- Create button which will redirect to recipe creation page -->
+    <!-- Edit profile info button -->
+
+        <div class="row nav-padding">
+            <div class="col-sm-4">
+                <!-- Make it clickable -->
+                {% if profile.avatar %}
+                    <img src="{{ profile.avatar.url }}" alt="profile_img"> <br />
+                {% else %}
+                    <img src="{% static 'icon/Profile Icon.png' %}" alt="profile_img"> <br />
+                {% endif %}
+                {{ request.user }}
+            </div>
+            <div class="col">
+                {% if my_recipes|length > 0 %}
+                    {% for recipe in my_recipes %}
+                        Recipe: {{ recipe.name }} <br />
+                    {% endfor %}
+                {% else %}
+                    No recipes.
+                {% endif %}
+            </div>
+        </div>
+
+
+{% endblock %}

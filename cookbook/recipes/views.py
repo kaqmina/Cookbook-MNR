@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Category, Recipe, Review, Ingredient, Step, Profile
-from .forms import RegistrationForm, RecipeForm, ReviewForm, ProfileForm
+from .forms import RegistrationForm, UserForm, RecipeForm, ReviewForm, ProfileForm, IngredientForm, StepForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
 
@@ -27,23 +28,31 @@ def home(request):
 def recipe_create(request):
     # Add new recipe.
     context = {}
-    context['form'] = RecipeForm()
+    context['recipe_form'] = RecipeForm()
+    context['ingredients_form'] = IngredientForm()
+    context['step_form'] = StepForm()
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES)
+        rec_form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            x = form.save(commit=False)
+            x = rec_form.save(commit=False)
             x.picture = request.FILES['picture']
             x.added_by = User.objects.get(username=request.user)
             x.save()
             return redirect('recipes:home') # Change it back to selected detail page.
         else:
             context['form'] = form
-            return render(request, 'test.html', context)
+            return render(request, 'create_recipe.html', context)
     else:
-        return render(request, 'test.html', context)
+        return render(request, 'create_recipe.html', context)
+
+def save_ingredient():
+    pass
+
+def save_steps():
+    pass
 
 @login_required
-def recipe_list(request):
+def recipe_list(request, category_id):
     # use paginator here.
     # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
     pass
@@ -82,6 +91,7 @@ def recipe_update(request, recipe_id):
 @login_required
 def recipe_delete(request, recipe_id):
     # Only set status to 0.
+    context = {}
     pass
 
 @login_required
@@ -144,14 +154,30 @@ def user_profile(request):
         return render(request, 'home.html', context)
 
 @login_required
-def user_detail(request, user_id):
+def user_detail(request):
     # Userinfo.
-    pass
+    context = {}
+    context['profile'] = Profile.objects.get(user=request.user)
+
+    context['my_recipes'] = Recipe.objects.all().filter(added_by=request.user)
+    return render(request, 'account.html', context)
 
 @login_required
-def user_update(request, user_id):
+def user_update(request):
     context = {}
-    pass
+    context['user_form'] = UserForm(instance=request.user)
+    if request.method == "POST":
+        user_form = UserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            login(request, request.user)
+            return redirect('recipes:user_detail')
+        else:
+            context['user_form'] = user_form
+            return render(request, 'account_edit.html', context)
+    else:
+        context['form'] = UserForm(instance=request.user)
+        return render(request, 'account_edit.html', context)
 
 def user_login(request):
     # Login credentials.
@@ -165,7 +191,7 @@ def user_login(request):
             login(request, user)
             return redirect('recipes:index')
         else:
-            print('hi')
+            print('User not found.')
             
     return render(request, 'login.html', context)
 

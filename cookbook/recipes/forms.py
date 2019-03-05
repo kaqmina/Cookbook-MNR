@@ -15,6 +15,20 @@ class RegistrationForm(ModelForm):
             'password': PasswordInput()
         }
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['password', 'email', 'first_name', 'last_name']
+        widgets = {
+            'password': PasswordInput()
+        }
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
@@ -30,3 +44,13 @@ class ReviewForm(ModelForm):
     class Meta:
         model = Review
         exclude = ['user', 'date_reviewed', 'recipe']
+
+class IngredientForm(ModelForm):
+    class Meta:
+        model = Ingredient
+        exclude = ['date_added', 'recipe']
+
+class StepForm(ModelForm):
+    class Meta:
+        model = Step
+        exclude = ['date_added', 'recipe']
