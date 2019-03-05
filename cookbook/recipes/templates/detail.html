@@ -73,6 +73,30 @@
         </div>
 
         <!-- Comment Section -->
+        <div class="container-fluid">
+            <div class="header-normal">
+                <h2 class="header2-font">LEAVE A COMMENT</h2>
+            </div>
+            {% if my_review %}
+                <!-- Star rating -->
+
+            {% else %}
+                <!-- Star rating -->
+                <form action="{% url 'recipes:review' recipe.id %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in review %}
+                        {{ field.label }} {{ field }}
+                    {% endfor %}
+                    <br />
+                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Submit</button>           
+                </form>
+            {% endif %}
+            <div>
+                
+
+            </div>
+        </div>
+
     </div>
 
 
