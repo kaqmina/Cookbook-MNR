@@ -174,7 +174,7 @@ html, body {
 .ricetta-button {
     border-radius: 30px;
     background-color: #48DDB5;
-    border: none;
+    border: solid 2px #48DDB5;
     color: white;
     font-family: 'Roboto M';
     font-size: 18px;
@@ -285,6 +285,16 @@ input[type="checkbox"]:checked + label::after {
 .ricetta-hr {
     width:75%;
 }
+
+.ricetta-pages-hr {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.ricetta-footer-hr {
+    width:50%;
+}
+
 .ricetta-detail-hr {
     height: 1px;
     color: #99F5DC;
@@ -304,17 +314,17 @@ input[type="checkbox"]:checked + label::after {
 }
 
 .header2-detail{
-    font-size:40px;
+    font-size:30px;
     color: #48DDB5;
     margin-top:50px;
     margin-bottom:25px;
 }
 
 .ricetta-detail-font {
-    font-size: 20px;
+    font-size: 18px;
     color: #707070;
-    margin-top:50px;
-    margin-bottom:50px;
+    margin-top:30px;
+    margin-bottom:30px;
     margin-left:30px;
 }
 
@@ -325,12 +335,161 @@ input[type="checkbox"]:checked + label::after {
     margin-right: 20%;
 }
 
-ol { 
-    counter-reset: item;
-    list-style-type: none;
+ol {
+    list-style: none;
+    counter-reset: my-awesome-counter;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
-li { display: inline; }
-li:before { 
-    content: counter(item) "  "; 
-    counter-increment: item 
+ol li {
+    counter-increment: my-awesome-counter;
+    display: flex;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+ol li::before {
+    content: "" counter(my-awesome-counter);
+    font-size: 40px;
+    margin-right: 50px;
+    line-height: 1;
+    font-family: "Roboto BD";
+    color: #48DDB5;
+}
+
+.rate-icon{
+    width:40px;
+    height:40px;
+    margin-right:7px;
+}
+
+.ricetta-rate-div{
+    margin-bottom: 30px;
+}
+
+.ricetta-textbox-detail {
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #99F5DC;
+    color: #707070;
+    font-family: 'Roboto';
+    font-size: 14px;
+
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    padding-right: 15px;
+
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+    width: 500px;
+    height:150px;
+    overflow: hidden;
+    resize: none;
+}
+
+
+.ricetta-button-comment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    width: 125px;
+    
+}
+
+.empty-comments-div{
+    margin:auto;
+    height: 300px;
+}
+
+.ricetta-light-font-color{
+    color: #c9c9c9;
+    font-size: 24px;
+}
+
+.align-center{
+    text-align: center;
+    padding-top:25%;
+}
+
+.ricetta-footer{
+    width:100%;
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+.footer-text{
+    font-size:14px;
+    text-align:center;
+}
+
+.footer-icon{
+    width:40px;
+    height:40px;
+    margin-top:20px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.footer-button {
+    border-radius: 20px;
+    background-color: #48DDB5;
+    border: solid 2px #48DDB5;
+    color: white;
+    font-family: 'Roboto';
+    font-size: 12px;
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
+.footer-textbox {
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d6d6d6;
+    color: #707070;
+    font-family: 'Roboto T';
+    font-size: 14px;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    width: 225px;
+}
+.footer-textbox::placeholder{
+    color: #c6c6c6;
+}
+
+.comments-sec-div{
+    padding:100px;
+}
+
+.comment-rating-icon{
+    width:25px;
+    height:25px;
+    margin-left:5px;
+}
+
+.ricetta-comments-sec-font{
+    line-height:1.7;
+    font-size:18px;
+
 }
