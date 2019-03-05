@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -51,7 +52,9 @@ def recipe_list(request):
 def recipe_detail(request, recipe_id):
     # Recipe details
     context = {}
-    
+    context['recipe'] = Recipe.objects.get(id=recipe_id)
+    context['reviews'] = Review.objects.all().filter(~Q(user=request.user), recipe=recipe_id) # Show reviews except the current user's.
+    context['my_review'] = Review.objects.get(user=request.user, recipe=recipe_id) # Show the review of the current user.
     return render(request, 'detail.html', context)
 
 @login_required

@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+.nav-padding {
+    padding-top: 60px;
+}
+
 .index-bg {
     background: url(../img/food.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;

@@ -1,10 +1,79 @@
 {% extends 'base-2.html' %}
 
 {% block title %}
-    Ricetta | Recipes > 
+    Ricetta | Recipes > {{ recipe.category }} > {{ recipe.name }}
 {% endblock %}
 
 {% block body %}
+
+    <!-- {% for review in reviews %}
+        By: {{ review.user }} <br />
+        Rating: {{ review.rating }} <br />
+        Comment: {{ review.comment }} <br />
+        Date reviewed: {{ review.date_reviewed }} <br />
+    {% endfor %}
+
+    {{ my_review.user }} <br />
+    {{ my_review.rating }} <br />
+    {{ my_review.comment }} <br />
+    {{ my_review.date_reviewed }} <br /> -->
+
+    <div class="nav-padding">
+
+        <div class="container-fluid clean-carousel">
+            <div class="row" style="height: 100%;">
+                <div class="col-sm-5" style="background-color: aliceblue;">
+                    <h2> {{ recipe.name }} </h2>
+                    <h5> By {{ recipe.added_by }} </h5>
+                    <p> {{ recipe.description }} </p>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <img src="{{ recipe.picture.url }}" alt="Recipe picture">
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="header-normal">
+                <h2 class="header2-font">INGREDIENTS</h2>
+            </div>
+            <div>
+                {% if recipe.ingredients.all|length == 0 %}
+                    <p> No ingredients has been added.</p>
+                {% else %}
+                    {% for ingredient in recipe.ingredients.all %}
+                        <p> {{ ingredient }} </p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="header-normal">
+                <h2 class="header2-font">DIRECTIONS</h2>
+            </div>
+            <div>
+                {% if recipe.steps.all|length == 0 %}
+                    <p> No steps has been added.</p>
+                {% else %}
+                    {% for step in recipe.steps.all %}
+                        <p> {{ step.description }} </p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+
+        <!-- Comment Section -->
+    </div>
 
 
 {% endblock %}
