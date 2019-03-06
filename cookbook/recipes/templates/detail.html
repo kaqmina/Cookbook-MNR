@@ -20,9 +20,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-5 vertical-rule-right">
-                                        <p class="font-roboto-medium ricetta-font-color">Prep: {{  }} </p>
-                                        <p class="font-roboto-medium ricetta-font-color">Cook:</p>
-                                        <p class="font-roboto-medium ricetta-font-color">Total:</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Prep: {{ recipe.prep_time }} </p>
+                                        <p class="font-roboto-medium ricetta-font-color">Cook: {{ recipe.cook_time }}</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Ready: {{ recipe.read_time }}</p>
                                     </div>
                                     <div class="col-sm-6 ricetta-font-color">
                                         <div>
@@ -32,7 +32,7 @@
                                         <hr class="ricetta-hr ricetta-detail-hr">
                                         <div class="row">
                                             <img class="portion-icon" src="../static/icon/Portion Icon.png" alt="Serving Size: ">
-                                            <p class="font-roboto-thin ricetta-font-color serve-size-font">Serving Size</p>
+                                            <p class="font-roboto-thin ricetta-font-color serve-size-font">Serving Size: {{ recipe.servings }}</p>
                                         </div>
                                     </div>
                                 </div>
