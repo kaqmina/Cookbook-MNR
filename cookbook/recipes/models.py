@@ -38,7 +38,7 @@ class Category(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='categories', null=True)
     date_added = models.DateTimeField(default=dt.now())
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)

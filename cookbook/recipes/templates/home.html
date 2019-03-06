@@ -122,15 +122,17 @@
             <div class="card-deck px-3">
             {% for recipe in latest_recipes %}
                 <div class="card shadow-lg mx-5">
-                    {% if recipe.picture %}
-                        <img class="card-img-top" src="{{ recipe.picture.url }}" alt="Card image cap">
-                    {% else %}
-                        <img class="card-img-top" src="{% static 'img/salad.jpg' %}" alt="Card image cap">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title mb-0">{{ recipe.name }}</h5>
-                        <p class="card-text mt-0"><small class="text-muted">by {{ recipe.added_by }}</small></p>
-                    </div>
+                    <a href="{% url 'recipes:detail' recipe.id %}" class="a-des">
+                        {% if recipe.picture %}
+                            <img class="card-img-top" src="{{ recipe.picture.url }}" alt="Card image cap">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'img/salad.jpg' %}" alt="Card image cap">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">{{ recipe.name }}</h5>
+                            <p class="card-text mt-0"><small class="text-muted">by {{ recipe.added_by }}</small></p>
+                        </div>
+                    </a>
                 </div>
             {% endfor %}
             </div>
