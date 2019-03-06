@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import modelformset_factory, inlineformset_factory
 from django.forms import formset_factory
 from django.db import IntegrityError, transaction
@@ -66,9 +67,25 @@ def save_steps():
     pass
 
 @login_required
-def recipe_list(request, category_id):
+def recipe_list(request): #category_id
     # use paginator here.
     # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+    # context = {}
+    # context['latest_recipes'] = Recipe.objects.all()
+    # return render(request, 'recipelisttest.html', context)
+
+    recipe_list = Recipe.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(recipe_list, 4)
+    try:
+        recipes = paginator.page(page)
+    except PageNotAnInteger:
+        recipes = paginator.page(1)
+    except EmptyPage:
+        recipes = paginator.page(paginator.num_pages)
+    return render(request, 'recipelisttest.html', {'latest_recipes': recipes})
+
     pass
 
 @login_required

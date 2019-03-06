@@ -1,0 +1,99 @@
+{% extends 'base-2.html' %}
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                Recipe List
+            {% endblock %}
+        </title>
+        
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
+        <script src="rater.js" charset="utf-8"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/pages.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/bootstrap-4.1.0-dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+        $(document).ready(function(){
+            $(".rate").rate();
+        });
+        $(".rating").rate();
+
+        //or for example
+        var options = {
+            max_value: 6,
+            step_size: 0.5,
+        }
+        $(".rating").rate(options);
+    </script>
+        {% block styles %}
+
+        {% endblock %}
+    </head>
+{% block body %}
+<div class="container-fluid nav-padding">
+  <div class="header-normal">
+      <h2 class="header2-font"> RECIPES </h2>
+  </div>
+
+  <div id="recipesHome" class="container-fluid">
+
+      <!-- Latest -->
+      <div class="row py-5">
+          <div class="card-deck px-3">
+          {% for recipe in latest_recipes %}
+              <div class="card shadow-lg mx-5">
+                  <a href="{% url 'recipes:detail' recipe.id %}" class="a-des">
+                      {% if recipe.picture %}
+                          <img class="card-img-top" src="{{ recipe.picture.url }}" alt="Card image cap">
+                      {% else %}
+                          <img class="card-img-top" src="{% static 'img/salad.jpg' %}" alt="Card image cap">
+                      {% endif %}
+                      <div class="card-body">
+                          <h5 class="card-title mb-0">{{ recipe.name|truncatechars:15 }}</h5>
+                          <p class="card-text mt-0"><small class="text-muted">by {{ recipe.added_by }}</small></p>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                      </div>
+                  </a>
+              </div>
+          {% endfor %}
+          </div>
+      </div>
+
+      <div class="pagination">
+
+      {% if latest_recipes.has_previous %}
+        <a class="pagination-action" href="?page=1">
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </a>
+        <a class="pagination-action" href="?page={{ latest_recipes.previous_page_number }}">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+      <span class="pagination-current">{{ latest_recipes.number }}</span>
+      <span class="pagination-of">of</span>
+      <span class="pagination-total">{{ latest_recipes.paginator.num_pages }}</span>
+
+      {% if latest_recipes.has_next %}
+        <a class="pagination-action" href="?page={{ latest_recipes.next_page_number }}">
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+        <a class="pagination-action" href="?page={{ latest_recipes.paginator.num_pages }}">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+    </div>
+    </div>
+</div>
+{% endblock %}
+</html>
