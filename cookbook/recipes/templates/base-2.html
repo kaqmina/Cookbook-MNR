@@ -8,9 +8,10 @@
         </title>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/bootstrap-4.1.0-dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/pages.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'recipes/bootstrap-4.1.0-dist/css/bootstrap.min.css' %}">
+        
         {% block styles %}
 
         {% endblock %}
@@ -51,8 +52,33 @@
         {% block body %}
             Body here.
         {% endblock %}
+
+        <footer class="ricetta-footer">
+            <hr class = "ricetta-footer-hr ricetta-pages-hr">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="text-align:center">
+                        <p class="footer-text font-roboto-medium ricetta-font-color">Contact us</p>
+                        <img src="../static/icon/Email Icon.png" class="footer-icon">
+                        <img src="../static/icon/Facebook Icon.png" class="footer-icon">
+                        <img src="../static/icon/Twitter Icon.png" class="footer-icon">
+                        <img src="../static/icon/Insta Icon.png" class="footer-icon">
+                    </div>
+                    <div class="col-md-6" style="text-align:center">
+                        <p class="footer-text font-roboto-medium ricetta-font-color">Subscribe to our Newsletter</p>
+                        <input type="text" class="footer-textbox" name="sub-email" placeholder="Your Email">
+                        <br />
+                        <button class="footer-button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        
         {% block scripts %}
             <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'js/jquery.formset.js' %}"></script>
+            <script src="{% static 'recipes/bootstrap-4.1.0-dist/js/bootstrap.min.js'%}"></script>
             <script src="{% static 'recipes/bootstrap-4.1.0-dist/js/bootstrap.min.js'%}"></script>
             <script src="{% static 'js/pages.js' %}"></script>
         {% endblock %}

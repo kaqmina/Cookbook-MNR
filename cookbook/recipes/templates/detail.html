@@ -8,54 +8,101 @@
 
     <div class="nav-padding">
 
-        <div class="container-fluid clean-carousel">
+        <div class="container-fluid clean-carousel" style="height: 90%;">
             <div class="row" style="height: 100%;">
-                <div class="col-sm-5" style="background-color: aliceblue;">
-                    <h2> {{ recipe.name }} </h2>
-                    <h5> By {{ recipe.added_by }} </h5>
-                    <p> {{ recipe.description }} </p>
+                <div class="col-sm-4">
+                    <div class="ricetta-detail-header">
+                        <h2 class="ricetta-detail-title font-roboto-bold"> {{ recipe.name }} </h2>
+                        <h5 class="font-slabo ricetta-font-color ricetta-item-margin"> By {{ recipe.added_by }} </h5>
+                        <p class="font-slabo ricetta-font-color ricetta-item-margin"> "{{ recipe.description }}" </p>
 
-                    <!-- Edit -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="ricetta-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-5 vertical-rule-right">
+                                        <p class="font-roboto-medium ricetta-font-color">Prep:</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Cook:</p>
+                                        <p class="font-roboto-medium ricetta-font-color">Total:</p>
+                                    </div>
+                                    <div class="col-sm-6 ricetta-font-color">
+                                        <div>
+                                            <p>Reviews</p>
+                                            <p>Stars</p>
+                                        </div>
+                                        <hr class="ricetta-hr ricetta-detail-hr">
+                                        <div class="row">
+                                            <img class="portion-icon" src="../static/icon/Portion Icon.png" alt="Serving Size: ">
+                                            <p class="font-roboto-thin ricetta-font-color serve-size-font">Serving Size</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-7">
-                    <img src="{{ recipe.picture.url }}" alt="Recipe picture">
+                <div class="col-sm-8">
+                    <img class="ricetta-image-fit" src="{{ recipe.picture.url }}" alt="Recipe picture">
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="header-normal">
-                <h2 class="header2-font">INGREDIENTS</h2>
+        <div class="ricetta-detail-container" style="margin-top:50px">
+            <div>
+                <h2 class="header2-detail font-roboto-bold">INGREDIENTS</h2>
             </div>
+            <hr class = "ricetta-hr ricetta-pages-hr">
             <div>
                 {% if recipe.ingredients.all|length == 0 %}
-                    <p> No ingredients has been added.</p>
+                    <div class="col-md-5 empty-comments-div">
+                        <p class="font-roboto-thin ricetta-light-font-color align-center">No steps have been added.</p>
+                    </div>
                 {% else %}
                     {% for ingredient in recipe.ingredients.all %}
-                        <p> {{ ingredient }} </p>
+                        <p class="ricetta-detail-font ricetta-font-color font-slabo"> {{ ingredient }} </p>
                     {% endfor %}
                 {% endif %}
             </div>
 
         </div>
 
-        <div class="container-fluid">
-            <div class="header-normal">
-                <h2 class="header2-font">DIRECTIONS</h2>
+        <div class="ricetta-detail-container">
+            <div>
+                <h2 class="header2-detail font-roboto-bold">DIRECTIONS</h2>
             </div>
+            <hr class = "ricetta-hr ricetta-pages-hr">
             <div>
                 {% if recipe.steps.all|length == 0 %}
-                    <p> No steps has been added.</p>
+                    <div class="col-md-5 empty-comments-div">
+                        <p class="font-roboto-thin ricetta-light-font-color align-center">No steps have been added.</p>
+                    </div>
                 {% else %}
-                    {% for step in recipe.steps.all %}
-                        <p> {{ step.description }}</p>
-                    {% endfor %}
+                    <div class="row">
+                        <ol>
+                            {% for step in recipe.steps.all %}
+                                <div class="col-sm-10">
+                                    <li class="ricetta-detail-font ricetta-font-color font-slabo">{{ step.description }}</li>
+                                </div>
+                            {% endfor %}
+                        </ol>
+                    </div>
+
+
+                    {% comment %}
+                        
+                        <ol>
+                            {% for step in recipe.steps.all %}
+                                <div class="col-sm-2">
+                                <li></li>
+                                </div>
+                                <div class="col-sm-10">
+                                <p>{{ step.description }}</p>
+                                </div>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                    
+                    {% endcomment %}
                 {% endif %}
             </div>
 
@@ -63,9 +110,10 @@
 
         <!-- Comment Section -->
         <div class="container-fluid">
-            <div class="header-normal">
-                <h2 class="header2-font">LEAVE A COMMENT</h2>
+            <div class="ricetta-detail-container">
+                <h2 class="header2-detail font-roboto-bold">LEAVE A COMMENT</h2>
             </div>
+            <hr class = "ricetta-hr ricetta-pages-hr">
             {% if my_review %}
                 <!-- Star rating -->
                 Rating: {{ my_review.rating }} <br />
@@ -74,17 +122,33 @@
                 <!-- Edit button here, change output -->
             {% else %}
                 <!-- Star rating -->
-                <form action="{% url 'recipes:review' recipe.id %}" method="POST">
-                    {% csrf_token %}
-                    {% for field in review %}
-                        {{ field.label }} {{ field }}
-                    {% endfor %}
-                    <br />
-                    <button type="submit" class="ricetta-button ricetta-button-login-signup">Submit</button>           
-                </form>
+                <div class="ricetta-detail-container">
+                    <form action="{% url 'recipes:review' recipe.id %}" method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <p class="font-roboto ricetta-font-color" style ="font-size:20px">Rate this recipe</p>
+
+                            <div class="ricetta-rate-div">
+                                <img src="../static/icon/Empty Star Icon.png" class="rate-icon">
+                                <img src="../static/icon/Empty Star Icon.png" class="rate-icon">
+                                <img src="../static/icon/Empty Star Icon.png" class="rate-icon">
+                                <img src="../static/icon/Empty Star Icon.png" class="rate-icon">
+                                <img src="../static/icon/Empty Star Icon.png" class="rate-icon">
+                            </div>
+                            {% comment %}
+                            stars placeholder    
+                            {% endcomment %}
+                        </div>
+                        <div>
+                            <p class="font-roboto-regular ricetta-font-color" style ="font-size:20px">Comment</p>
+                            <textarea class="ricetta-textbox-detail" name="comment" rows="5" columns"50"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="ricetta-button ricetta-button-comment">Comment</button>           
+                    </form>
+                </div>
             {% endif %}
             <div>
-                
                 {% if reviews|length == 0 %}
                     <p> No other reviews. </p>
                 {% else %}
@@ -97,8 +161,42 @@
                         </p>
                     {% endfor %}
                 {% endif %}
-
             </div>
+
+            <div class="col-md-5 empty-comments-div">
+                <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
+            </div>
+            {% if recipe.steps.all|length != 0 %}
+                {% for ingredient in recipe.ingredients.all %}
+                    <div class="col-md-6 ricetta-detail-container comments-sec-div">
+                        <div class="row">
+                            <div class="col-sm-3" style="min-width:200px;">
+                                <div>
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Empty Star Icon.png" class="comment-rating-icon">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="padding-left:0px;">
+                                <p class="ricetta-font-color font-roboto ricetta-comments-sec-font">Jane Doe</p>
+                            
+                            </div>
+                            </br>
+                            
+                        </div>
+
+                        <p class="ricetta-font-color font-roboto-light-italic ricetta-comment-date">February 19, 2019</p>
+                        <p class="font-slabo ricetta-font-color ricetta-comments-font">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                        <hr class="ricetta-hr ricetta-comment-hr">
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
         </div>
 
     </div>
