@@ -5,24 +5,6 @@
 {% endblock %}
 
 {% block body %}
-    <!-- Form -->
-        <!-- Recipe:
-            - name
-            - description
-            - category
-            - servings
-            - prep time
-            - cook time
-            - ready time
-            - picture
-
-        Ingredient:
-            - ingredient
-        
-        Step:
-            - description -->
-    <!--  -->
-
     <div class="nav-padding">
         <form action="" enctype="multipart/form-data" method="POST">
             <div class="container-fluid">
@@ -48,8 +30,13 @@
                 <div class="header-normal">
                     <h2 class="header2-font">INGREDIENTS</h2>
                 </div>
-                <div>
+                <div id="ing_formset">
+                    {{ ingredient_formset.management_form }}
                     {{ ingredient_formset.as_p }}
+                </div>
+                <input type="button" value="Add More" id="add_more_ing">
+                <div id="empty_form" style="display:none">
+                    {{ ingredient_formset.empty_form.as_p }}
                 </div>
             </div>
 
@@ -57,8 +44,13 @@
                 <div class="header-normal">
                     <h2 class="header2-font">DIRECTIONS</h2>
                 </div>
-                <div>
+                <div id="stp_formset">
+                    {{ step_formset.management_form }}
                     {{ step_formset.as_p }}
+                </div>
+                <input type="button" value="Add More" id="add_more_stp">
+                <div id="empty_form" style="display:none">
+                    {{ step_formset.empty_form.as_p }}
                 </div>
             </div>
 
