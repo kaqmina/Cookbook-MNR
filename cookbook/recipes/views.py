@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
+from django.forms.models import modelformset_factory
+from django.forms import formset_factory
+from django.db import IntegrityError, transaction
 
 # Create your views here.
 def index(request):
@@ -24,23 +27,84 @@ def home(request):
     context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
     return render(request, 'home.html', context)
 
+# @login_required
+# def recipe_create(request):
+#     # Add new recipe.
+#     context = {}
+#     context['recipe_form'] = RecipeForm()
+#     context['ingredients_form'] = IngredientForm()
+#     context['step_form'] = StepForm()
+#     if request.method == 'POST':
+#         rec_form = RecipeForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             x = rec_form.save(commit=False)
+#             x.picture = request.FILES['picture']
+#             x.added_by = User.objects.get(username=request.user)
+#             x.save()
+#             return redirect('recipes:home') # Change it back to selected detail page.
+#         else:
+#             context['recipe_form'] = recipe_form
+#             return render(request, 'create_recipe.html', context)
+#     else:
+#         return render(request, 'create_recipe.html', context)
+
 @login_required
 def recipe_create(request):
     # Add new recipe.
     context = {}
+    # Formsets
+    IngredientFormset = formset_factory(IngredientForm, extra=2)
+    Ing_formset = IngredientFormset()
+    StepFormset = formset_factory(StepForm, extra=2)
+    Stp_formset = StepFormset()
+    # Forms
     context['recipe_form'] = RecipeForm()
-    context['ingredients_form'] = IngredientForm()
-    context['step_form'] = StepForm()
+    context['ingredient_form'] = Ing_formset
+    context['step_form'] = Stp_formset
     if request.method == 'POST':
         rec_form = RecipeForm(request.POST, request.FILES)
-        if form.is_valid():
+        formset_ing, formset_stp = \
+            ing_formset(request.POST, prefix='fs1'), \
+            stp_formset(request.POST, prefix='fs2')
+        if rec_form.is_valid() and formset_ing.is_valid() and formset_stp.is_valid():
             x = rec_form.save(commit=False)
             x.picture = request.FILES['picture']
             x.added_by = User.objects.get(username=request.user)
             x.save()
-            return redirect('recipes:home') # Change it back to selected detail page.
+
+            # Save formset values
+            new_ingredients = []
+            for ing_form in ing_formset:
+                ingredient = ing_form.cleaned_data.get('ingredient')
+
+                if ingredient:
+                    new_ingredients.append(Ingredient(recipe=x, ingredient=ingredient))
+
+            try:
+                with transaction.atomic():
+                    Ingredient.filter(recipe=x).delete()
+                    Ingredient.objects.bulk_create(new_ingredients)
+                    message.success(request, 'Added ingredients')
+            except IntegrityError:
+                messages.error(request, 'Error in ingredients')
+                return redirect('recipes:home')
+
+                
+            new_steps = []
+            for stp_form in stp_formset:
+                step = ing_form.stp_form.get('step_desc')
+
+                if ingredient:
+                    new_steps.append(Step(recipe=x, description=step))
+            try:
+                with transaction.atomic():
+                    Step.filter(recipe=x).delete()
+                    Step.objects.bulk_create(new_steps)
+                    message.success(request, 'Added steps')
+            except IntegrityError:
+                messages.error(request, 'Error in steps')
+                return redirect('recipes:account')
         else:
-            context['form'] = form
             return render(request, 'create_recipe.html', context)
     else:
         return render(request, 'create_recipe.html', context)
@@ -199,3 +263,10 @@ def user_logout(request):
     context = {}
     logout(request)
     return redirect('recipes:index')
+
+def save_step(request):
+    context = {}
+    StepFormset = modelformset_factory(Step, StepForm)
+    formset = StepFormset()
+    context['step_formset'] = formset
+    return render(request, 'test.html', context)
