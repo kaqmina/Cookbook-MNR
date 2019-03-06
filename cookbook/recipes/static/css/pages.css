@@ -13,6 +13,10 @@ html, body {
     margin-top: 80px;
 }
 
+.nav-padding{
+    padding-top: 70px;
+}
+
 .index-bg {
     background: url(../img/food.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -583,6 +587,7 @@ ol li::before {
     border: dashed 2px #DFDFDF;
     height:335px;
     text-align:center;
+    min-width:200px;
 }
 
 .create-new-recipe-plus{
