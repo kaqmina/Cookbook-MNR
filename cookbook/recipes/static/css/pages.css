@@ -2,13 +2,15 @@ html, body {
     height: 100%;
 }
 
+
 .a-des {
     color: #000000 !important;
     text-decoration: none !important;
 }
 
-.nav-padding {
-    padding-top: 60px;
+.nav-padding-acct {
+    padding-top: 70px;
+    margin-top: 80px;
 }
 
 .index-bg {
@@ -314,6 +316,10 @@ input[type="checkbox"]:checked + label::after {
     margin-right: 20px;
 }
 
+.vertical-rule-right-nocolor{
+    border-right: solid 1px #e2e2e2;
+}
+
 .portion-icon{
     width:25px;
     height:25px;
@@ -553,4 +559,96 @@ ol li::before {
     font-size:13px;
     margin-left:5px;
     margin-top:5px;
+}
+
+.avatar{
+    width:150px;
+}
+
+.account-main-div {
+    height:80%;
+}
+
+.ricetta-h5{
+    margin-top:20px;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.account-details-div{
+    padding-left:60px;
+}
+
+.create-new-recipe{
+    border: dashed 2px #DFDFDF;
+    height:335px;
+    text-align:center;
+}
+
+.create-new-recipe-plus{
+    margin-top:60px;
+    margin-bottom:0px;
+    color: #DFDFDF;
+    font-size: 80px;
+}
+
+.create-new-recipe-text{
+    margin-top:0px;
+    margin-bottom:30px;
+    color: #DFDFDF;
+    font-size: 20px;
+}
+
+
+
+.font-edit-acct{
+    line-height: 4;
+    margin-right:10px;
+}
+
+.textbox-edit{
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
+    color: #707070;
+    font-family: 'Roboto T';
+    font-size: 16px;
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 13px;
+    padding-right: 8px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    width: 400px;
+}
+
+.ricetta-edit-button-div{
+    text-align: center;
+    margin-top: 30px;
+    
+}
+
+.ricetta-edit-button{
+    border-radius: 30px;
+    background-color: #48DDB5;
+    border: solid 2px #48DDB5;
+    color: white;
+    font-family: 'Roboto M';
+    font-size: 18px;
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
 }

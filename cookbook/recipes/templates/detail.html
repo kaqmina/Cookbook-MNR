@@ -149,25 +149,15 @@
                 </div>
             {% endif %}
             <div>
-                {% if reviews|length == 0 %}
-                    <p> No other reviews. </p>
-                {% else %}
-                    {% for review in reviews.all %}
-                        <p>
-                            Rating: {{ review.rating }}
-                            Description: {{ review.comment }}
-                            By: {{ review.user }}
-                            Date reviewed: {{ review.date_reviewed }}
-                        </p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-            <div class="col-md-5 empty-comments-div">
-                <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
-            </div>
-            {% if recipe.steps.all|length != 0 %}
-                {% for ingredient in recipe.ingredients.all %}
+                
+            
+                            
+            {% if reviews|length == 0 %}
+                <div class="col-md-5 empty-comments-div">
+                    <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
+                </div>
+            {% else %}
+                {% for review in reviews.all %}
                     <div class="col-md-6 ricetta-detail-container comments-sec-div">
                         <div class="row">
                             <div class="col-sm-3" style="min-width:200px;">
@@ -181,16 +171,15 @@
                                 </div>
                             </div>
                             <div class="col-sm-3" style="padding-left:0px;">
-                                <p class="ricetta-font-color font-roboto ricetta-comments-sec-font">Jane Doe</p>
+                                <p class="ricetta-font-color font-roboto ricetta-comments-sec-font"> {{ review.user }}</p>
                             
                             </div>
                             </br>
                             
                         </div>
 
-                        <p class="ricetta-font-color font-roboto-light-italic ricetta-comment-date">February 19, 2019</p>
-                        <p class="font-slabo ricetta-font-color ricetta-comments-font">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                        <p class="ricetta-font-color font-roboto-light-italic ricetta-comment-date">{{ review.date_reviewed }}</p>
+                        <p class="font-slabo ricetta-font-color ricetta-comments-font"> {{ review.comment }}</p>
                         <hr class="ricetta-hr ricetta-comment-hr">
                     </div>
                 {% endfor %}

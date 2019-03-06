@@ -12,24 +12,45 @@
     <!-- Create button which will redirect to recipe creation page -->
     <!-- Edit profile info button -->
 
-        <div class="row nav-padding">
-            <div class="col-sm-4">
+        <div class="row nav-padding-acct account-main-div">
+            <div class="col-md-2 vertical-rule-right-nocolor account-details-div">
                 <!-- Make it clickable -->
                 {% if profile.avatar %}
-                    <img src="{{ profile.avatar.url }}" alt="profile_img"> <br />
+                    <img class="avatar" src="{{ profile.avatar.url }}" alt="profile_img"> <br />
                 {% else %}
-                    <img src="{% static 'icon/Profile Icon.png' %}" alt="profile_img"> <br />
+                    <img class="avatar" src="{% static 'icon/Profile Icon.png' %}" alt="profile_img"> <br />
                 {% endif %}
-                {{ request.user }}
+                <h5 class="ricetta-h5 font-roboto-bold ricetta-font-color">{{ request.user }}<h5>
+                <a href="{% url 'recipes:user_update' %}" class="a-des"><button type="submit" class="ricetta-button ricetta-button-comment">Edit Profile</button></a>
             </div>
             <div class="col">
-                {% if my_recipes|length > 0 %}
+                <div class="row py-5">
+                    <div class="card-deck px-3">
+                    <div class="card mx-5 border create-new-recipe">
+                        <div class="create-new-recipe">
+                            <a href="{% url 'recipes:create_recipe' %}" class="a-des">
+                                <p class="font-roboto-thin create-new-recipe-plus">+</p>
+                                <p class="font-roboto-thin create-new-recipe-text">Create a new recipe</p>
+                            </a>
+                        </div>
+                    </div>
                     {% for recipe in my_recipes %}
-                        Recipe: {{ recipe.name }} <br />
+                        <div class="card shadow-lg mx-5">
+                            <a href="{% url 'recipes:detail' recipe.id %}" class="a-des">
+                                {% if recipe.picture %}
+                                    <img class="card-img-top" src="{{ recipe.picture.url }}" alt="Card image cap">
+                                {% else %}
+                                    <img class="card-img-top" src="{% static 'img/salad.jpg' %}" alt="Card image cap">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title mb-0">{{ recipe.name }}</h5>
+                                    <p class="card-text mt-0"><small class="text-muted">by {{ recipe.added_by }}</small></p>
+                                </div>
+                            </a>
+                        </div>
                     {% endfor %}
-                {% else %}
-                    No recipes.
-                {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
 
