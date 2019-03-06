@@ -13,4 +13,5 @@ urlpatterns = [
     path('<int:recipe_id>/review', views.review, name='review'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
+    path('recipelisttest', views.recipe_list, name='testrecipe'),
 ]
