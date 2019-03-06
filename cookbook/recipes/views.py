@@ -27,27 +27,6 @@ def home(request):
     context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
     return render(request, 'home.html', context)
 
-# @login_required
-# def recipe_create(request):
-#     # Add new recipe.
-#     context = {}
-#     context['recipe_form'] = RecipeForm()
-#     context['ingredients_form'] = IngredientForm()
-#     context['step_form'] = StepForm()
-#     if request.method == 'POST':
-#         rec_form = RecipeForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             x = rec_form.save(commit=False)
-#             x.picture = request.FILES['picture']
-#             x.added_by = User.objects.get(username=request.user)
-#             x.save()
-#             return redirect('recipes:home') # Change it back to selected detail page.
-#         else:
-#             context['recipe_form'] = recipe_form
-#             return render(request, 'create_recipe.html', context)
-#     else:
-#         return render(request, 'create_recipe.html', context)
-
 @login_required
 def recipe_create(request):
     # Add new recipe.
