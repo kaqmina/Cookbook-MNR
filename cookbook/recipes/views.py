@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
-from django.forms.models import modelformset_factory
+from django.forms.models import modelformset_factory, inlineformset_factory
 from django.forms import formset_factory
 from django.db import IntegrityError, transaction
 
@@ -27,87 +27,37 @@ def home(request):
     context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
     return render(request, 'home.html', context)
 
-# @login_required
-# def recipe_create(request):
-#     # Add new recipe.
-#     context = {}
-#     context['recipe_form'] = RecipeForm()
-#     context['ingredients_form'] = IngredientForm()
-#     context['step_form'] = StepForm()
-#     if request.method == 'POST':
-#         rec_form = RecipeForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             x = rec_form.save(commit=False)
-#             x.picture = request.FILES['picture']
-#             x.added_by = User.objects.get(username=request.user)
-#             x.save()
-#             return redirect('recipes:home') # Change it back to selected detail page.
-#         else:
-#             context['recipe_form'] = recipe_form
-#             return render(request, 'create_recipe.html', context)
-#     else:
-#         return render(request, 'create_recipe.html', context)
-
 @login_required
 def recipe_create(request):
     # Add new recipe.
     context = {}
-    # Formsets
-    IngredientFormset = formset_factory(IngredientForm, extra=2)
-    Ing_formset = IngredientFormset()
-    StepFormset = formset_factory(StepForm, extra=2)
-    Stp_formset = StepFormset()
-    # Forms
     context['recipe_form'] = RecipeForm()
-    context['ingredient_form'] = Ing_formset
-    context['step_form'] = Stp_formset
+    IngredientFormset = inlineformset_factory(Recipe, Ingredient, IngredientForm, extra=5)
+    StepFormset = inlineformset_factory(Recipe, Step, StepForm, extra=5)
+    context['ingredient_formset'] = IngredientFormset
+    context['step_formset'] = StepFormset
+    
     if request.method == 'POST':
         rec_form = RecipeForm(request.POST, request.FILES)
-        formset_ing, formset_stp = \
-            ing_formset(request.POST, prefix='fs1'), \
-            stp_formset(request.POST, prefix='fs2')
-        if rec_form.is_valid() and formset_ing.is_valid() and formset_stp.is_valid():
+        if rec_form.is_valid():
             x = rec_form.save(commit=False)
             x.picture = request.FILES['picture']
             x.added_by = User.objects.get(username=request.user)
             x.save()
 
-            # Save formset values
-            new_ingredients = []
-            for ing_form in ing_formset:
-                ingredient = ing_form.cleaned_data.get('ingredient')
+            ing_formset = IngredientFormset(request.POST, instance=x)
+            stp_formset = StepFormset(request.POST, instance=x)
+            if ing_formset.is_valid() and stp_formset.is_valid():
+                ing_formset.save()
+                stp_formset.save()
+            
+            return redirect('recipes:detail', recipe_id=x.id)
+    
+        ing_formset = IngredientFormset()
+        stp_formset = StepFormset()
+    
+    return render(request, 'edit_recipe.html', context)
 
-                if ingredient:
-                    new_ingredients.append(Ingredient(recipe=x, ingredient=ingredient))
-
-            try:
-                with transaction.atomic():
-                    Ingredient.filter(recipe=x).delete()
-                    Ingredient.objects.bulk_create(new_ingredients)
-                    message.success(request, 'Added ingredients')
-            except IntegrityError:
-                messages.error(request, 'Error in ingredients')
-                return redirect('recipes:home')
-
-                
-            new_steps = []
-            for stp_form in stp_formset:
-                step = ing_form.stp_form.get('step_desc')
-
-                if ingredient:
-                    new_steps.append(Step(recipe=x, description=step))
-            try:
-                with transaction.atomic():
-                    Step.filter(recipe=x).delete()
-                    Step.objects.bulk_create(new_steps)
-                    message.success(request, 'Added steps')
-            except IntegrityError:
-                messages.error(request, 'Error in steps')
-                return redirect('recipes:account')
-        else:
-            return render(request, 'create_recipe.html', context)
-    else:
-        return render(request, 'create_recipe.html', context)
 
 def save_ingredient():
     pass
@@ -134,23 +84,54 @@ def recipe_detail(request, recipe_id):
     context['review'] = ReviewForm()    
     return render(request, 'detail.html', context)
 
+# @login_required
+# def recipe_update(request, recipe_id):
+#     # Update details.
+#     context = {}
+#     recipe = Recipe.object.get(id=recipe_id)
+    
+#     context['recipe'] = recipe
+#     if request.method == 'POST':
+#         form = RecipeForm(request.POST, instance=recipe)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse('Successfully updated.')
+#         else:
+#             context['form'] = form
+#             return render(request, 'test.html', context)
+#     else:
+#         context['form'] = RecipeForm(instance=recipe)
+#         return render(request, 'test.html', context)
+
 @login_required
 def recipe_update(request, recipe_id):
-    # Update details.
     context = {}
-    recipe = Recipe.object.get(id=recipe_id)
-    context['recipe'] = recipe
+    recipe = Recipe.objects.get(id=recipe_id)
+    IngredientFormset = inlineformset_factory(Recipe, Ingredient, IngredientForm, extra=2)
+    StepFormset = inlineformset_factory(Recipe, Step, StepForm, extra=2)
+    context['ingredient_formset'] = IngredientFormset
+    context['step_formset'] = StepFormset
+
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=recipe)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('Successfully updated.')
-        else:
-            context['form'] = form
-            return render(request, 'test.html', context)
-    else:
-        context['form'] = RecipeForm(instance=recipe)
-        return render(request, 'test.html', context)
+        rec_form = RecipeForm(request.POST, request.FILES)
+        if rec_form.is_valid():
+            x = rec_form.save(commit=False)
+            x.picture = request.FILES['picture']
+            x.added_by = User.objects.get(username=request.user)
+            x.save()
+
+            ing_formset = IngredientFormset(request.POST, instance=x)
+            stp_formset = StepFormset(request.POST, instance=x)
+            if ing_formset.is_valid() and stp_formset.is_valid():
+                ing_formset.save()
+                stp_formset.save()
+            
+            return redirect('recipes:detail', recipe_id=x.id)
+    
+        ing_formset = IngredientFormset()
+        stp_formset = StepFormset()
+    
+    return render(request, 'create_recipe.html', context)
 
 @login_required
 def recipe_delete(request, recipe_id):
