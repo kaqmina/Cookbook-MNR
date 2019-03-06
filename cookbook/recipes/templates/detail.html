@@ -77,7 +77,6 @@
                         <p class="font-roboto-thin ricetta-light-font-color align-center">No steps have been added.</p>
                     </div>
                 {% else %}
-<<<<<<< HEAD
                     <div class="row">
                         <ol>
                             {% for step in recipe.steps.all %}
@@ -104,11 +103,6 @@
                     </div>
                     
                     {% endcomment %}
-=======
-                    {% for step in recipe.steps.all %}
-                        <p> {{ step.description }}</p>
-                    {% endfor %}
->>>>>>> c7ecd6fd99545b6f34438cd19c257c5747555ed4
                 {% endif %}
             </div>
 
@@ -154,13 +148,7 @@
                     </form>
                 </div>
             {% endif %}
-<<<<<<< HEAD
-            {% comment %}
-            
-            if comments section are empty
-=======
             <div>
-                
                 {% if reviews|length == 0 %}
                     <p> No other reviews. </p>
                 {% else %}
@@ -173,13 +161,11 @@
                         </p>
                     {% endfor %}
                 {% endif %}
->>>>>>> c7ecd6fd99545b6f34438cd19c257c5747555ed4
+            </div>
 
             <div class="col-md-5 empty-comments-div">
                 <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
             </div>
-                            
-            {% endcomment %}
             {% if recipe.steps.all|length != 0 %}
                 {% for ingredient in recipe.ingredients.all %}
                     <div class="col-md-6 ricetta-detail-container comments-sec-div">

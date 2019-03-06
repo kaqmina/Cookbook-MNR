@@ -49,18 +49,7 @@
                     <h2 class="header2-font">INGREDIENTS</h2>
                 </div>
                 <div>
-                    {{ ingredient_form.management_form }}
-
-                    {% for ingredient in ingredient_form.forms %}
-                        <div class="link-formset">
-                            {{ form.ingredient }}
-                            {% if ingredient_form.ingredient.errors %}
-                                {% for error in ingredient_form.ingredient.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                    {{ ingredient_formset.as_p }}
                 </div>
             </div>
 
@@ -69,18 +58,7 @@
                     <h2 class="header2-font">DIRECTIONS</h2>
                 </div>
                 <div>
-                    {{ step_form.management_form }}
-
-                    {% for description in step_form.fomrs %}
-                        <div class="link-formset">
-                            {{ form.description }}
-                            {% if step_form.description.errors %}
-                                {% for error in step_form.description.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                    {{ step_formset.as_p }}
                 </div>
             </div>
 
