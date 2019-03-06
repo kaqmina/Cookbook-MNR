@@ -1,0 +1,22 @@
+{% extends 'base-2.html' %}
+
+{% block title %}
+    Ricetta | Edit Account
+{% endblock %}
+
+{% block body %}
+    
+    <div class="row nav-padding">
+        
+        <form action="{% url 'recipes:user_update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in user_form %}
+                {{ field.label }}
+                {{ field }}
+            {% endfor %}
+            </div>
+            <input type="submit" value="Save changes">
+        </form>        
+    </div>
+
+{% endblock %}

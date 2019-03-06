@@ -1,16 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'base-2.html' %}
 
 {% block title %}
     this is for testing the forms.
 {% endblock %}
 
 {% block body %}
-    <form action="{% url 'recipes:create_recipe' %}" enctype="multipart/form-data" method="POST">
+    <!-- <form action="{% url 'recipes:create_recipe' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {% for field in form %}
             {{ field.label }} <br />
             {{ field }} <br />
         {% endfor %}
         <input type="submit" value="Create">
-    </form>
+    </form> -->
+
+    {% for form in step_formset.forms %}
+        <div class="link-formset">
+            {{ form.description }}
+        </div>
+    {% endfor %}
+    {{ step_formset.management_form }}
 {% endblock %}

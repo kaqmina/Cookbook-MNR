@@ -1,0 +1,90 @@
+{% extends 'base-2.html' %}
+
+{% block title %}
+    Ricetta | Create Recipe
+{% endblock %}
+
+{% block body %}
+    <!-- Form -->
+        <!-- Recipe:
+            - name
+            - description
+            - category
+            - servings
+            - prep time
+            - cook time
+            - ready time
+            - picture
+
+        Ingredient:
+            - ingredient
+        
+        Step:
+            - description -->
+    <!--  -->
+
+    <div class="nav-padding">
+        <form action="" enctype="multipart/form-data" method="POST">
+            <div class="container-fluid">
+                {% csrf_token %}
+                <div class="row" style="height: 100%">
+                    <div class="col-sm-5">
+                        {{ recipe_form.name }} <br />
+                        {{ recipe_form.description }} <br />
+                        {{ recipe_form.category }} <br />
+                        {{ recipe_form.servings }} <br />
+                        {{ recipe_form.prep_time }} <br />
+                        {{ recipe_form.cook_time }} <br />
+                        {{ recipe_form.read_time }} <br />
+                    </div>
+
+                    <div class="col-sm-7">
+                        {{ recipe_form.picture }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="header-normal">
+                    <h2 class="header2-font">INGREDIENTS</h2>
+                </div>
+                <div>
+                    {{ ingredient_form.management_form }}
+
+                    {% for ingredient in ingredient_form.forms %}
+                        <div class="link-formset">
+                            {{ form.ingredient }}
+                            {% if ingredient_form.ingredient.errors %}
+                                {% for error in ingredient_form.ingredient.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="header-normal">
+                    <h2 class="header2-font">DIRECTIONS</h2>
+                </div>
+                <div>
+                    {{ step_form.management_form }}
+
+                    {% for description in step_form.fomrs %}
+                        <div class="link-formset">
+                            {{ form.description }}
+                            {% if step_form.description.errors %}
+                                {% for error in step_form.description.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <input type="submit" value="Create" class="button">
+        </form>
+    </div>
+{% endblock %}
