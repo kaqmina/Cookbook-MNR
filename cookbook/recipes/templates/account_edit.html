@@ -6,17 +6,52 @@
 
 {% block body %}
     
-    <div class="row nav-padding">
-        
-        <form action="{% url 'recipes:user_update' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% for field in user_form %}
-                {{ field.label }}
-                {{ field }}
-            {% endfor %}
-            </div>
-            <input type="submit" value="Save changes">
-        </form>        
+    <div class="row nav-padding-acct">
+        <div class="col-md-2 vertical-rule-right-nocolor account-details-div">
+                <!-- Make it clickable -->
+                <img class="avatar" src='../static/icon/Profile Icon.png' alt="profile_img"> <br />
+            <h5 class="ricetta-h5 font-roboto-bold ricetta-font-color"><h5>
+            <a href="{% url 'recipes:user_update' %}" class="a-des"><button type="submit" class="ricetta-button ricetta-button-comment">Edit Profile</button></a>
+        </div>
+        <div class="col-md-10">
+            <form action="{% url 'recipes:user_update' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-4" style="text-align:right">
+                        <p class="font-roboto-regular ricetta-font-color font-edit-acct">First Name:<p>
+                    </div>
+                    <div class="col-md-8" style="text-align:left">
+                        <input class="textbox-edit" type="text" name="first_name" value="Admin" maxlength="30" id="id_first_name">
+                    </div>
+
+                    <div class="col-md-4" style="text-align:right">
+                        <p class="font-roboto-regular ricetta-font-color font-edit-acct">Last Name:<p>
+                    </div>
+                    <div class="col-md-8" style="text-align:left">
+                        <input class="textbox-edit" type="text" name="last_name" value="Minad" maxlength="150" id="id_last_name">
+                    </div>
+
+                    <div class="col-md-4" style="text-align:right">
+                        <p class="font-roboto-regular ricetta-font-color font-edit-acct">Email Address:<p>
+                    </div>
+                    <div class="col-md-8" style="text-align:left">
+                        <input class="textbox-edit" type="email" name="email" value="admin@admin.com" maxlength="254" id="id_email">
+                    </div>
+
+                    <div class="col-md-4" style="text-align:right">
+                        <p class="font-roboto-regular ricetta-font-color font-edit-acct">Password:<p>
+                    </div>
+                    <div class="col-md-8" style="text-align:left">
+                        <input class="textbox-edit" type="password" name="password" maxlength="128" required="" id="id_password">
+                    </div>
+                </div>
+                <div class="ricetta-edit-button-div">
+                    <input class="ricetta-edit-button" type="submit" value="Save changes">
+                </div>
+
+            </form>     
+        </div>   
     </div>
 
 {% endblock %}
