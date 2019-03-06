@@ -10,7 +10,6 @@
 
         <div class="container-fluid clean-carousel" style="height: 90%;">
             <div class="row" style="height: 100%;">
-<<<<<<< HEAD
                 <div class="col-sm-4">
                     <div class="ricetta-detail-header">
                         <h2 class="ricetta-detail-title font-roboto-bold"> {{ recipe.name }} </h2>
@@ -39,18 +38,6 @@
                                 </div>
                                 
                             </div>
-=======
-                <div class="col-sm-5" style="background-color: aliceblue;">
-                    <h2> {{ recipe.name }} </h2>
-                    <h5> By {{ recipe.added_by }} </h5>
-                    <p> {{ recipe.description }} </p>
-
-                    <!-- Edit -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
->>>>>>> c7ecd6fd99545b6f34438cd19c257c5747555ed4
                         </div>
                     </div>
                 </div>
@@ -90,7 +77,6 @@
                         <p class="font-roboto-thin ricetta-light-font-color align-center">No steps have been added.</p>
                     </div>
                 {% else %}
-<<<<<<< HEAD
                     <div class="row">
                         <ol>
                             {% for step in recipe.steps.all %}
@@ -117,11 +103,6 @@
                     </div>
                     
                     {% endcomment %}
-=======
-                    {% for step in recipe.steps.all %}
-                        <p> {{ step.description }}</p>
-                    {% endfor %}
->>>>>>> c7ecd6fd99545b6f34438cd19c257c5747555ed4
                 {% endif %}
             </div>
 
@@ -167,15 +148,12 @@
                     </form>
                 </div>
             {% endif %}
-<<<<<<< HEAD
-            {% comment %}
-            
-            if comments section are empty
-=======
             <div>
                 
                 {% if reviews|length == 0 %}
-                    <p> No other reviews. </p>
+                    <div class="col-md-5 empty-comments-div">
+                        <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
+                    </div>
                 {% else %}
                     {% for review in reviews.all %}
                         <p>
@@ -186,13 +164,9 @@
                         </p>
                     {% endfor %}
                 {% endif %}
->>>>>>> c7ecd6fd99545b6f34438cd19c257c5747555ed4
-
-            <div class="col-md-5 empty-comments-div">
-                <p class="font-roboto-thin ricetta-light-font-color align-center">Be the first to review this recipe!</p>
-            </div>
+                </div>
+            
                             
-            {% endcomment %}
             {% if recipe.steps.all|length != 0 %}
                 {% for ingredient in recipe.ingredients.all %}
                     <div class="col-md-6 ricetta-detail-container comments-sec-div">
