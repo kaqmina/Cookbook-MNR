@@ -291,6 +291,11 @@ input[type="checkbox"]:checked + label::after {
     margin-bottom: 50px;
 }
 
+.ricetta-comment-hr {
+    width:60%;
+    margin-top:40px;
+}
+
 .ricetta-footer-hr {
     width:50%;
 }
@@ -479,7 +484,9 @@ ol li::before {
 }
 
 .comments-sec-div{
-    padding:100px;
+    margin-left:25%;
+    margin-right:25%;
+    padding:15px;
 }
 
 .comment-rating-icon{
@@ -491,5 +498,17 @@ ol li::before {
 .ricetta-comments-sec-font{
     line-height:1.7;
     font-size:18px;
+    margin-bottom: 0px;
 
+}
+
+.ricetta-comments-font{
+    font-size:16px;
+
+}
+
+.ricetta-comment-date{
+    font-size:13px;
+    margin-left:5px;
+    margin-top:5px;
 }

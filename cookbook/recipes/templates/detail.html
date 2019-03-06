@@ -166,29 +166,35 @@
             </div>
                             
             {% endcomment %}
-
-            <div class="col-md-8 ricetta-detail-container comments-sec-div">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div>
-                            <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
-                            <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
-                            <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
-                            <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
-                            <img src="../static/icon/Empty Star Icon.png" class="comment-rating-icon">
+            {% if recipe.steps.all|length != 0 %}
+                {% for ingredient in recipe.ingredients.all %}
+                    <div class="col-md-6 ricetta-detail-container comments-sec-div">
+                        <div class="row">
+                            <div class="col-sm-3" style="min-width:200px;">
+                                <div>
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Star Icon.png" class="comment-rating-icon">
+                                    <img src="../static/icon/Empty Star Icon.png" class="comment-rating-icon">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="padding-left:0px;">
+                                <p class="ricetta-font-color font-roboto ricetta-comments-sec-font">Jane Doe</p>
+                            
+                            </div>
+                            </br>
                             
                         </div>
-                    </div>
-                    <div class="col-sm-3" style="padding-left:0px;">
-                        <p class="ricetta-font-color font-roboto ricetta-comments-sec-font">Jane Doe</p>
-                    
-                    </div>
-                    </br>
-                    
-                </div>
 
-                <p>Date</p>
-            </div>
+                        <p class="ricetta-font-color font-roboto-light-italic ricetta-comment-date">February 19, 2019</p>
+                        <p class="font-slabo ricetta-font-color ricetta-comments-font">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                        <hr class="ricetta-hr ricetta-comment-hr">
+                    </div>
+                {% endfor %}
+            {% endif %}
 
 
         </div>
