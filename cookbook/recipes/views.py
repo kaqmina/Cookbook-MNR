@@ -26,6 +26,8 @@ def home(request):
     # Home page. | Show trending, most popular, latest.
     context = {}
     context['latest_recipes'] = Recipe.objects.all().order_by('-id')[:4]
+    context['latest_recipes1'] = Recipe.objects.all().order_by('-id')[5:9]
+    context['latest_recipes2'] = Recipe.objects.all().order_by('-id')[10:14]
     return render(request, 'home.html', context)
 
 @login_required
